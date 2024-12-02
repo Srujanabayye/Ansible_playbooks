@@ -1,0 +1,11 @@
+---
+- name: Install git on controller
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Install git
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+...
