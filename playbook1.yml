@@ -1,0 +1,13 @@
+---
+- name: Create a user on all servers
+  hosts: all
+  tasks:
+    - name: Create a user
+      user:
+        name: srujanab
+        password: srujanab
+        uid: 4333
+        shell: /bin/bash
+        comment: "Regular user"
+        home: /tmp/srujanab
+...

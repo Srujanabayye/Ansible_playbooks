@@ -1,0 +1,9 @@
+---
+- name: Create files
+  hosts: QAservers
+  tasks:
+    - name: Create file
+      file:
+        name: "{{d}}"
+        state: "{{e}}"
+...

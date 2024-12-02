@@ -1,0 +1,30 @@
+---
+- name: Implementimg handlers
+  hosts: all
+  tasks:
+    - name: Install apache
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+      notify: check url response
+    - name: Edit the index.html file
+      copy:
+        content: "Hello World"
+        dest: /var/www/html/index.html
+      notify: Restart apache2
+  handlers:
+    - name: Restart apache2
+      service:
+        name: apache2
+        state: restarted
+
+    - name: check url response
+      uri:
+        url: "{{item}}"
+        status_code: 200
+      with_items:
+            - http://172.31.25.77
+            - http://172.31.29.183
+
+...

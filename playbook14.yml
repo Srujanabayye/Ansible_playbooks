@@ -1,0 +1,14 @@
+---
+- name: Install software applications
+  hosts: all
+  tasks:
+    - name: Install tree
+      apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      with_items:
+        - tree
+        - git
+        - maven
+...

@@ -1,0 +1,26 @@
+---
+- name: Configure nginx
+  hosts: all
+  tasks:
+    - name: install nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+    - name: Copy customised index.html file
+      copy:
+        src: index.html
+        dest: /usr/share/nginx/html
+    - name: Restart nginx
+      service:
+        name: nginx
+        state: restarted
+    - name: Check nginx on all servers
+      uri:
+        url: "{{item}}"
+        status_code: 200
+      with_items:
+        - http://172.31.25.77
+        - http://172.31.29.183
+
+...

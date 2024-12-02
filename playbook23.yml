@@ -1,0 +1,17 @@
+---
+- name: Change permissions if the file is an empty file
+  hosts: all
+  tasks:
+    - name: Capture file information
+      stat:
+        path: /tmp/newfile
+      register: result
+    - name: Display output of the above module
+      debug:
+        var: result
+    - name: Change permissions if the file is empty
+      file:
+        name: /tmp/newfile
+        mode: 770
+      when: result.stat.size==0
+...
