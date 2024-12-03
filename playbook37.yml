@@ -1,0 +1,10 @@
+---
+- name: Install docker
+  hosts: all
+  tasks:
+    - name: Install docker
+      apt:
+        name: docker-ce-cli
+        state: present
+        update_cache: yes
+...
